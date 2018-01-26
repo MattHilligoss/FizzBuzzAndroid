@@ -15,15 +15,22 @@ public class FizzBuzzActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_fizz_buzz);
     final TextView text = (TextView) findViewById(R.id.text_view);
-    text.setText(FizzBuzz.count(2000));
+    text.setText(FizzBuzz.count(20));
 
     final EditText limit = (EditText) findViewById(R.id.limit);
     Button button = (Button) findViewById(R.id.button);
     button.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        text.setText(FizzBuzz.count(Integer.parseInt(limit.getText().toString())));
-      }
-    });
+        int fizzLimit = 0;
+        try {
+          fizzLimit = Integer.parseInt(limit.getText().toString());
+        } catch (NumberFormatException e) {
+          e.printStackTrace();
+        }
+          text.setText(FizzBuzz.count(fizzLimit));
+
+        }
+      });
   }
 }
